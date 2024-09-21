@@ -60,7 +60,30 @@ async function asynchronousApiCall() {
   }
 }
 
+// Asynchronous function with Promise and error handling
+function asynchronousFuncPromiseWithErrorHandling() {
+  console.log("Asynchronous function with Promise and error handling started");
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      // Simulate an error
+      if (Math.random() < 0.5) {
+        resolve("Asynchronous operation with Promise finished successfully");
+      } else {
+        reject("Asynchronous operation with Promise failed");
+      }
+    }, 4000); // Simulate a 4-second delay
+  });
+}
+
 synchronousApiCall();
 asynchronousApiCall();
+asynchronousFuncPromiseWithErrorHandling()
+  .then((result) => {
+    console.log(result);
+  })
+  .catch((error) => {
+    console.error("Error caught:", error);
+  });
+
 
 console.log("Main thread continued");
