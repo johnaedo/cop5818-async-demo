@@ -61,12 +61,12 @@ async function asynchronousApiCall() {
 }
 
 // Asynchronous function with Promise and error handling
-function asynchronousFuncPromiseWithErrorHandling() {
+function asynchronousFuncPromiseWithErrorHandling(shouldResolve) {
   console.log("Asynchronous function with Promise and error handling started");
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       // Simulate an error
-      if (Math.random() < 0.5) {
+      if (shouldResolve) {
         resolve("Asynchronous operation with Promise finished successfully");
       } else {
         reject("Asynchronous operation with Promise failed");
@@ -77,7 +77,7 @@ function asynchronousFuncPromiseWithErrorHandling() {
 
 synchronousApiCall();
 asynchronousApiCall();
-asynchronousFuncPromiseWithErrorHandling()
+asynchronousFuncPromiseWithErrorHandling(true)
   .then((result) => {
     console.log(result);
   })
@@ -85,5 +85,12 @@ asynchronousFuncPromiseWithErrorHandling()
     console.error("Error caught:", error);
   });
 
+asynchronousFuncPromiseWithErrorHandling(false)
+  .then((result) => {
+    console.log(result);
+  })
+  .catch((error) => {
+    console.error("Error caught:", error);
+  });
 
 console.log("Main thread continued");
