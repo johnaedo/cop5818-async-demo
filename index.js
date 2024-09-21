@@ -39,4 +39,28 @@ asynchronousFuncPromise()
     console.error(error);
   });
 
+// Synchronous function calling an external API (simulated with setTimeout)
+function synchronousApiCall() {
+  console.log("Synchronous API call started");
+  // Simulate a synchronous API call with a delay
+  let startTime = Date.now();
+  while (Date.now() - startTime < 2000) {} // Simulate a 2-second delay
+  console.log("Synchronous API call finished");
+}
+
+// Asynchronous function calling an external API using fetch
+async function asynchronousApiCall() {
+  console.log("Asynchronous API call started");
+  try {
+    const response = await fetch("https://rickandmortyapi.com/api/character");
+    const data = await response.json();
+    console.log("Asynchronous API call finished:", data);
+  } catch (error) {
+    console.error("Error during asynchronous API call:", error);
+  }
+}
+
+synchronousApiCall();
+asynchronousApiCall();
+
 console.log("Main thread continued");
