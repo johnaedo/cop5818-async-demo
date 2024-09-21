@@ -93,4 +93,23 @@ asynchronousFuncPromiseWithErrorHandling(false)
     console.error("Error caught:", error);
   });
 
+// Asynchronous function with async/await (using external API)
+// Use async/await when you want to write asynchronous code that looks
+// and behaves a bit more like synchronous code. It makes asynchronous
+// code easier to read and reason about.
+//
+// `await` can only be used inside an `async` function.
+async function asynchronousFuncWithAwait() {
+  console.log("Asynchronous function with async/await started");
+  try {
+    const response = await fetch("https://rickandmortyapi.com/api/character");
+    const data = await response.json();
+    console.log("Asynchronous API call finished with async/await:", data);
+  } catch (error) {
+    console.error("Error during asynchronous API call with async/await:", error);
+  }
+}
+
+asynchronousFuncWithAwait();
+
 console.log("Main thread continued");
